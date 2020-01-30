@@ -1,12 +1,32 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//const React = require('react')
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+function getButtonName() {
+    return 'Click me to refresh time'
+}
+
+const App = () => {
+    let buttonText = "Refresh Time"
+    let style = {backgroundColor: 'blueviolet', color: 'white'}
+    return (
+        // <div>
+        //     <label htmlFor="name" className="label">Enter name:</label>
+        //     <input id="name" type="text">
+        //         <button style="background-color: blueviolet; color:white;">Submit</button>
+        // </div>);
+
+        <div>
+            <span>{new Date().toLocaleDateString()}</span>
+            <label htmlFor="name" className="label">Enter name:</label>
+            <input id="name" type="text" placeholder={buttonText}></input>
+            <button style={style}>{getButtonName()}</button>
+        </div>);
+
+}
+
+ReactDOM.render(
+    <App/>,
+    document.querySelector('#root')
+)
