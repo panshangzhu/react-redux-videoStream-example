@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
+import faker from 'faker';
+import CommentDetail from "./commentDetail";
 
 //const React = require('react')
 
@@ -17,11 +19,21 @@ const App = () => {
         //         <button style="background-color: blueviolet; color:white;">Submit</button>
         // </div>);
 
-        <div>
-            <span>{new Date().toLocaleDateString()}</span>
-            <label htmlFor="name" className="label">Enter name:</label>
-            <input id="name" type="text" placeholder={buttonText}></input>
-            <button style={style}>{getButtonName()}</button>
+        <div className="ui comments" style={{margin: "30px"}}>
+            <h3 className="ui dividing header">Comments</h3>
+            <CommentDetail author="Mark" timeAgo="Today at 5:42PM"></CommentDetail>
+            <CommentDetail author="Alex"></CommentDetail>
+            <CommentDetail author="Tiger"></CommentDetail>
+            <CommentDetail author="Linda"></CommentDetail>
+
+            <form className="ui reply form">
+                <div className="field">
+                    <textarea></textarea>
+                </div>
+                <div className="ui blue labeled submit icon button">
+                    <i className="icon edit"></i> Add Reply
+                </div>
+            </form>
         </div>);
 
 }
