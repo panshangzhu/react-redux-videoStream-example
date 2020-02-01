@@ -12,6 +12,8 @@ function getButtonName() {
 const App = () => {
     let buttonText = "Refresh Time"
     let style = {backgroundColor: 'blueviolet', color: 'white'}
+    navigator.geolocation.getCurrentPosition(loc => console.log(loc),
+        err => console.log(err))
     return (
         // <div>
         //     <label htmlFor="name" className="label">Enter name:</label>
