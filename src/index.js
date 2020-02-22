@@ -6,6 +6,7 @@ import CommentDetail2, {iPhone} from "./commentDetail2";
 import AppCard from "./appCard";
 import SearchBar, {APP_NAME} from "./components/searchBar";
 import WeatherComponent from "./components/weatherComponent";
+import ImageList from "./components/imageList";
 
 //const React = require('react')
 
@@ -16,9 +17,15 @@ function getButtonName() {
 class App extends React.Component {
     buttonText = "Refresh Time"
     style = {backgroundColor: 'blueviolet', color: 'white'}
+    state = {term: 'Tokyo', images: [], bcImage: null}
 
     recvNewTerm(term) {
         console.log('parent function context ---->>>', term)
+    }
+
+    recvImagesFromChild(images) {
+        console.log('color: green', images)
+        this.setState({images})
     }
 
     render() {
@@ -30,7 +37,13 @@ class App extends React.Component {
             // </div>);
             <div className="ui comments" style={{margin: "30px"}}>
                 <SearchBar recvTerm={term => this.recvNewTerm(term)}></SearchBar>
-                <WeatherComponent></WeatherComponent>
+                <WeatherComponent newCity={this.state.term}
+                                  baImage={this.state.bcImage}
+                                  receiveImages={img => this.recvImagesFromChild(img)}
+                ></WeatherComponent>
+                <ImageList updateImageClick={img => this.setState({bcImage: img.src})}
+                           images={this.state.images}
+                >This is images</ImageList>
                 <AppCard color='red'></AppCard>
                 <h3 className="ui dividing header">Comments</h3>
                 <CommentDetail2 userName="Mark" age="30"></CommentDetail2>

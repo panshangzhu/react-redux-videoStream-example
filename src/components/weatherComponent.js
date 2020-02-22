@@ -10,8 +10,8 @@ class WeatherComponent extends Component {
     //state = {loading: true}
     constructor(pros) {
         super(pros);
-        console.log(pros)
-        this.state = {lat: 40, log: null, loading: true}
+        console.log('weather pros -->', pros)
+        this.state = {lat: 40, log: null, loading: true, newCity: pros.newCity, images: []}
         // setInterval(() => {
         //     this.setState({lat: this.count++})
         // }, 1000)
@@ -32,7 +32,7 @@ class WeatherComponent extends Component {
         console.log('run1')
         axios.get('https://api.unsplash.com/photos', {
             params: {
-                query: 'car',
+                query: this.state.newCity,
             },
             headers: {
                 Authorization: 'Client-ID _haOS3MAwueDb9FKgAiO9-9GABaZpIIG_RbJK7Q9SkI',
@@ -42,7 +42,8 @@ class WeatherComponent extends Component {
             .then(res => {
                 console.log('run2')
                 console.log(res.data)
-                this.setState({loading: false})
+                this.setState({loading: false, images: res.data})
+                this.props.receiveImages(this.state.images)
             })
             .catch(err => {
                 console.log('run3')
@@ -73,7 +74,7 @@ class WeatherComponent extends Component {
                 </div>
             )
         }
-        return <div className="weather">
+        return <div className="weather" style={{backgroundImage: `url(${this.props.baImage})`}}>
             <div className="weatherRow">
                 <div className="weatherColumn">1r 1c</div>
             </div>
