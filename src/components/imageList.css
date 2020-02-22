@@ -1,0 +1,17 @@
+.imageList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    transition: all 0.5s ease-in-out;
+}
+
+.single {
+    width: 200px;
+    margin: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.single:hover {
+    transform: scale(1.1);
+}
