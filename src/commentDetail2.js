@@ -3,20 +3,20 @@ import Faker from 'faker';
 
 const CommentDetail2 = (props) => {
     return (
-            <div class="comment">
-                <a class="avatar">
+            <div className="comment">
+                <a className="avatar">
                     <img src={Faker.image.avatar()}></img>
                 </a>
-                <div class="content">
-                    <a class="author">{props.userName}</a>
-                    <div class="metadata">
-                        <span class="date">Today at 5:42PM</span>
+                <div className="content">
+                    <a className="author">{props.userName}</a>
+                    <div className="metadata">
+                        <span className="date">Today at 5:42PM</span>
                     </div>
-                    <div class="text">
+                    <div className="text">
                         Age is: {props.age}
                     </div>
-                    <div class="actions">
-                        <a class="reply">Reply</a>
+                    <div className="actions">
+                        <a className="reply">Reply</a>
                     </div>
                 </div>
             </div>

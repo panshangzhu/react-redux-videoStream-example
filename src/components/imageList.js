@@ -9,8 +9,10 @@ class ImageList extends React.Component{
         let temp = this.props.images.map(obj => {
             return <img className="single"
                         onClick={event => this.props.updateImageClick(event.target)}
+                        onMouseOver={event => this.props.updateImageMouseOver(event.target)}
+                        onMouseOut={event => this.props.updateImageMouseOut('')}
                         key={obj.id}
-                        src={obj.urls.regular}></img>
+                        src={obj.urls.regular+"&w=500&h=300&dpi=2"}></img>
         })
         return (
             <div className="imageList">{temp}</div>

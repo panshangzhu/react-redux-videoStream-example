@@ -29,8 +29,8 @@ class AppCard extends Component {
 
         let apiKey = '80a967d4075ab661b8e59826fffcd1f6'
         let city = 'Toronto'
-        //axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
-            axios.get('https://google.com')
+        axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
+            // axios.get('https://google.com')
             .then(res => {console.log(res)})
             .catch(err => console.log(err))
 
