@@ -11,7 +11,6 @@ class ImageList extends Component {
                 onClick={event => this.props.updateImageClick(event.target)}
                 key={obj.id} src={obj.urls.regular}></img>
         })
-        console.log(temp)
         return (
             <div className="imageList">{temp}</div>
         )

@@ -17,17 +17,23 @@ function getButtonName() {
 class App extends React.Component {
     buttonText = "Refresh Time"
     style = {backgroundColor: 'blueviolet', color: 'white',}
-    state = {term: 'Tokyo', images: [],
-        bcImg: 'https://mobilecontent.costco.com/live/resource/img/ca-homepage/d-appliances-hero-200217-en.jpg'
-    }
+    state = {
+        term: 'Tokyo', images: [],
+        bcImg: 'https://mobilecontent.costco.com/live/resource/img/ca-homepage/d-appliances-hero-200217-en.jpg',
+        weather: {}
+    };
     recvNewTerm(term) {
         console.log('parent function context ---->>>', term)
+        this.setState({term})
+    }
+
+    recvNewWeather(wt) {
+        this.setState({weather: wt})
     }
 
     recvImagesFromChild(images) {
-        console.log('color: green', images)
+        console.log('color: green----new images', images)
         this.setState({images})
-
     }
 
     render() {
@@ -42,7 +48,10 @@ class App extends React.Component {
                 <WeatherComponent
                     newCity={this.state.term}
                     bcImage={this.state.bcImg}
-                    recvImages={img => this.recvImagesFromChild(img)}
+                    newWeather={this.state.weather}
+                    recvImages={img => {
+                        this.recvImagesFromChild(img)
+                    }}
                 ></WeatherComponent>
                 <ImageList
                     updateImageClick={img => this.setState({bcImg: img.src})}
