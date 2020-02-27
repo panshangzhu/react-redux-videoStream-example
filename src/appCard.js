@@ -27,23 +27,23 @@ class AppCard extends Component {
         //     ? access_key = YOUR_ACCESS_KEY
         //     & query = New York
 
-        let apiKey = '80a967d4075ab661b8e59826fffcd1f6'
-        let city = 'Toronto'
-        axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
-            // axios.get('https://google.com')
-            .then(res => {console.log(res)})
-            .catch(err => console.log(err))
+        // let apiKey = '80a967d4075ab661b8e59826fffcd1f6'
+        // let city = 'Toronto'
+        // axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
+        //     // axios.get('https://google.com')
+        //     .then(res => {console.log(res)})
+        //     .catch(err => console.log(err))
 
         console.log('componentDidMount')
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('componentDidUpdate')
-    }
-
-    componentWillUnmount() {
-        console.log('will unmount')
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     console.log('componentDidUpdate')
+    // }
+    //
+    // componentWillUnmount() {
+    //     console.log('will unmount')
+    // }
 }
 
 export default AppCard;

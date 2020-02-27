@@ -4,6 +4,7 @@ import './weatherComponent.css'
 import axios from "axios";
 import Loader from "./loader";
 
+const apiKey = 'c581effe09ec8fb36a27620a206952e3'
 class WeatherComponent extends Component {
     count = 0;
 
@@ -11,11 +12,42 @@ class WeatherComponent extends Component {
     constructor(pros) {
         super(pros);
         console.log('weather pros -->', pros)
-        this.state = {lat: 40, log: null, loading: true, newCity: pros.newCity, images: []}
+        this.state = {lat: 40, log: null, loading: true, newCity: pros.newCity, images: [], weather: null}
         // setInterval(() => {
         //     this.setState({lat: this.count++})
         // }, 1000)
         console.log('constructor')
+    }
+
+    updateNewCity() {
+        axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${this.props.newCity}`)
+            .then(res => {
+                console.log('222 ->', res)
+                this.setState({weather: res.data.current})
+            })
+        // setTimeout(
+        console.log('run1')
+        axios.get('https://api.unsplash.com/search/photos', {
+            params: {
+                query: this.props.newCity,
+                per_page: 5
+            },
+            headers: {
+                Authorization: 'Client-ID Kx511GvN02p_i-O4ONxgKYDFpKKO_LjBPx2REvBCtvc',
+                mark2win: 'Welcome lucas :)'
+            }
+        })
+            .then(res => {
+                // console.log('run2')
+                console.log('phont --->', res.data.results)
+                this.setState({loading: false, images: res.data.results})
+                this.props.receiveImages(res.data.results)
+            })
+            .catch(err => {
+                console.log('run3')
+                console.log(err)
+                this.setState({loading: false})
+            })
     }
 
     componentDidMount() {
@@ -24,33 +56,7 @@ class WeatherComponent extends Component {
         // http://api.weatherstack.com/current
         //     ? access_key = YOUR_ACCESS_KEY
         //     & query = New York
-
-        let apiKey = '80a967d4075ab661b8e59826fffcd1f6'
-        let city = 'Toronto'
-        //axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`)
-        // setTimeout(
-        console.log('run1')
-        axios.get('https://api.unsplash.com/photos', {
-            params: {
-                query: this.state.newCity,
-            },
-            headers: {
-                Authorization: 'Client-ID _haOS3MAwueDb9FKgAiO9-9GABaZpIIG_RbJK7Q9SkI',
-                mark2win: 'Welcome lucas :)'
-            }
-        })
-            .then(res => {
-                console.log('run2')
-                console.log(res.data)
-                this.setState({loading: false, images: res.data})
-                this.props.receiveImages(this.state.images)
-            })
-            .catch(err => {
-                console.log('run3')
-                console.log(err)
-                this.setState({loading: false})
-            })
-
+        this.updateNewCity()
         // )
 
 
@@ -59,6 +65,11 @@ class WeatherComponent extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('componentDidUpdate')
+        if (prevProps.newCity !== this.props.newCity) {
+            this.setState({newCity: this.props.newCity})
+            console.log(this.props.newCity)
+            this.updateNewCity()
+        }
     }
 
     componentWillUnmount() {
@@ -76,12 +87,12 @@ class WeatherComponent extends Component {
         }
         return <div className="weather" style={{backgroundImage: `url(${this.props.baImage})`}}>
             <div className="weatherRow">
-                <div className="weatherColumn">1r 1c</div>
+                <div className="weatherColumn">observation_time: {this.state?.weather?.observation_time}</div>
             </div>
             <div className="weatherRow">
-                <div className="weatherColumn">2r 1c</div>
-                <div className="weatherColumn">2r 2c</div>
-                <div className="weatherColumn">2r 3c</div>
+                <div className="weatherColumn">temperature: {this.state?.weather?.temperature}</div>
+                <div className="weatherColumn">{this.state?.weather?.weather_descriptions}</div>
+                <div className="weatherColumn">Wind speed: {this.state?.weather?.wind_speed}</div>
             </div>
             <div className="weatherRow">
                 <div className="weatherColumn">3r 1c</div>

@@ -17,10 +17,12 @@ function getButtonName() {
 class App extends React.Component {
     buttonText = "Refresh Time"
     style = {backgroundColor: 'blueviolet', color: 'white'}
-    state = {term: 'Tokyo', images: [], bcImage: null, clickImage: null}
+    state = {term: 'Tokyo', images: [], bcImage: null,
+        clickImage: null, test: null}
 
     recvNewTerm(term) {
         console.log('parent function context ---->>>', term)
+        this.setState({term})
     }
 
     recvImagesFromChild(images) {
@@ -28,9 +30,10 @@ class App extends React.Component {
         this.setState({images})
     }
 
-    recvImagesFromMouseOut (image) {
-
+    print = (str) => {
+        console.log(str)
     }
+
 
     render() {
         return (
@@ -62,6 +65,8 @@ class App extends React.Component {
                         <i className="icon edit"></i> Add Reply
                     </div>
                 </form>
+                <input type="text" onChange={event => this.setState({test: event.target.value})}></input>
+                <button onClick={event => this.print(this.state.test)}>Button</button>
             </div>);
     }
 
