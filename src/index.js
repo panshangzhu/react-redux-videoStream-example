@@ -18,7 +18,7 @@ class App extends React.Component {
     buttonText = "Refresh Time"
     style = {backgroundColor: 'blueviolet', color: 'white',}
     state = {term: 'Tokyo', images: [],
-        bcImg: null
+        bcImg: null, clickImage: null
     }
     recvNewTerm(term) {
         console.log('parent function context ---->>>', term)
@@ -45,7 +45,9 @@ class App extends React.Component {
                     recvImages={img => this.recvImagesFromChild(img)}
                 ></WeatherComponent>
                 <ImageList
-                    updateImageClick={img => this.setState({bcImg: img.src})}
+                    updateImageClick={img => this.setState({bcImg: img.src, clickImage: img.src})}
+                    updateImageMouseOver={img=>this.setState({bcImg: img.src})}
+                    updateImageMouseOut={img=>this.setState({bcImg: this.state.clickImage})}
                     images={this.state.images}>this is iamges</ImageList>
                 <AppCard color='red'></AppCard>
                 <h3 className="ui dividing header">Comments</h3>

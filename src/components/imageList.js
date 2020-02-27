@@ -9,9 +9,10 @@ class ImageList extends Component {
             return <img
                 className="single"
                 onClick={event => this.props.updateImageClick(event.target)}
-                onMouseOver={event => this.props.updateImageClick(event.target)}
-                onMouseOut={event => this.props.updateImageClick('') }
-                key={obj.id} src={obj.urls.regular+"&h=300&w=500&dpi=10"}></img>
+                onMouseOver={event => this.props.updateImageMouseOver(event.target)}
+                onMouseOut={event => this.props.updateImageMouseOut('') }
+                key={obj.id}
+                src={obj.urls.regular+"&h=300&w=500&dpi=10"}></img>
         })
         console.log(temp)
         return (
