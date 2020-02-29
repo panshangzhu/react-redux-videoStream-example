@@ -11,27 +11,69 @@ import Youtube1 from "./components/youtube1";
 import YoutubeSearchBar from "./components/youtubeSearchBar";
 import "./index.css"
 import YoutubeList from "./components/youtubeList";
+import axios from "axios";
+import youtube from "./fun";
 
 //const React = require('react')
 
 function getButtonName() {
     return 'Click me to refresh time'
 }
-
+const API = "AIzaSyCJ7fIIhU9NwRhcq8g_yqIbtAcqcY_uoEE"
+const Url = "https://www.googleapis.com/youtube/v3/search"
 class App extends React.Component {
     buttonText = "Refresh Time"
     style = {backgroundColor: 'blueviolet', color: 'white'}
-    state = {term: 'Tokyo', images: [], bcImage: null,
-        clickImage: null, test: null}
+    // state = {term: 'Tokyo', images: [], bcImage: null,
+    //     clickImage: null, test: null}
+
+    state = {
+        term: 'macbook',
+        video: [],
+        count: 0
+    }
+    getVideo = async (search) => {
+        if (!search) {
+            return 'key word is empty'
+        } else {
+            search = search.trim()
+            let res = await axios.get(Url, {
+                params: {
+                    'part': 'snippet',
+                    'maxResults': 10,
+                    'type': 'video',
+                    'q': search,
+                    'key': API,
+                    timeout: 2000
+                }
+            })
+            console.log(res)
+            this.setState({video: res.data.items})
+            console.log(this.state.video)
+        }
+    }
+    constructor() {
+        super();
+    }
+    componentDidMount() {
+        this.getVideo(this.state.term)
+        // youtube(this.state.term)
+        // console.log(youtube(this.state.term))
+    }
 
     recvNewTerm(term) {
         console.log('parent function context ---->>>', term)
         this.setState({term})
+        this.getVideo(this.state.term)
     }
 
     recvImagesFromChild(images) {
         console.log('color: green', images)
         this.setState({images})
+    }
+
+    recvVideoFromChild(video) {
+        this.setState({count: video})
     }
 
     print = (str) => {
@@ -73,14 +115,16 @@ class App extends React.Component {
             //     <button onClick={event => this.print(this.state.test)}>Button</button>
                 <div>
                     <div className="searchBar">
-                        <YoutubeSearchBar></YoutubeSearchBar>
+                        <YoutubeSearchBar recvTerm={term => this.recvNewTerm(term)}></YoutubeSearchBar>
                     </div>
                     <div className="container">
                         <div className="content">
-                            <Youtube1></Youtube1>
+                            <Youtube1 video={this.state.video[this.state.count]}></Youtube1>
                         </div>
                         <div>
-                            <YoutubeList></YoutubeList>
+                            <YoutubeList videos={this.state.video}
+                                         selectCount={num => this.recvVideoFromChild(num)}
+                            ></YoutubeList>
                         </div>
                     </div>
                 </div>);

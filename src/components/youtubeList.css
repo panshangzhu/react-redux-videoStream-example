@@ -1,0 +1,12 @@
+
+.youtubeList {
+    display: flex;
+    flex-direction: column;
+}
+
+.img {
+    width: 260px;
+    margin: 5px;
+    border: gold solid 1px;
+    cursor: pointer;
+}

@@ -1,9 +1,23 @@
 import React from "react";
+import axios from "axios"
+
+
 
 class YoutubeSearchBar extends React.Component{
     state = {
-        term: ''
+        term: '',
     }
+
+    constructor(props) {
+        super(props);
+    }
+
+    onProcessSubmit(evt) {
+        evt.preventDefault()
+        console.log(this.state.term)
+        this.props.recvTerm(this.state.term)
+    }
+
     render() {
         return (
             <div>
