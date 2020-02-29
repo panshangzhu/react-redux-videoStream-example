@@ -25,6 +25,9 @@ class WeatherComponent extends Component {
                 console.log('222 ->', res)
                 this.setState({weather: res.data.current})
             })
+            .catch(err => {
+                console.log(err)
+            })
         // setTimeout(
         console.log('run1')
         axios.get('https://api.unsplash.com/search/photos', {
@@ -39,7 +42,7 @@ class WeatherComponent extends Component {
         })
             .then(res => {
                 // console.log('run2')
-                console.log('phont --->', res.data.results)
+                console.log('phont --->', res.data)
                 this.setState({loading: false, images: res.data.results})
                 this.props.receiveImages(res.data.results)
             })
