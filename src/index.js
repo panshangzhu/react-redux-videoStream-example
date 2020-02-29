@@ -1,16 +1,36 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import faker from 'faker';
-import CommentDetail from "./commentDetail";
+/*import CommentDetail from "./commentDetail";
 import CommentDetail2, {iPhone} from "./commentDetail2";
 import AppCard from "./appCard";
 import SearchBar, {APP_NAME} from "./components/searchBar";
 import WeatherComponent from "./components/weatherComponent";
-import ImageList from "./components/imageList";
+import ImageList from "./components/imageList";*/
+import getVideo from "./components/youtube";
+
+
+class App extends React.Component{
+
+    constructor() {
+        super();
+        let search = 'infinity'
+        let str = null
+        getVideo(search)
+        // console.log(str)
+    }
+    render() {
+        return (
+            <div></div>
+        );
+    }
+
+}
 
 //const React = require('react')
 
-function getButtonName() {
+
+/*function getButtonName() {
     return 'Click me to refresh time'
 }
 
@@ -53,7 +73,7 @@ class App extends React.Component {
                            updateImageMouseOut={img => this.setState({bcImage: this.state.clickImage})}
                            images={this.state.images}
                 >This is images</ImageList>
-                <AppCard color='red'></AppCard>
+                {/!*<AppCard color='red'></AppCard>
                 <h3 className="ui dividing header">Comments</h3>
                 <CommentDetail2 userName="Mark" age="30"></CommentDetail2>
                 <CommentDetail2 userName="Jerry" age="30"></CommentDetail2>
@@ -66,12 +86,12 @@ class App extends React.Component {
                     </div>
                 </form>
                 <input type="text" onChange={event => this.setState({test: event.target.value})}></input>
-                <button onClick={event => this.print(this.state.test)}>Button</button>
+                <button onClick={event => this.print(this.state.test)}>Button</button>*!/}
             </div>);
     }
 
 
-}
+}*/
 
 ReactDOM.render(
     <App/>,
