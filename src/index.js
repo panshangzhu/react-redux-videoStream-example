@@ -7,6 +7,7 @@ import AppCard from "./appCard";
 import SearchBar, {APP_NAME} from "./components/searchBar";
 import WeatherComponent from "./components/weatherComponent";
 import ImageList from "./components/imageList";
+import getVidoes from "./youtube/api";
 
 //const React = require('react')
 
@@ -15,6 +16,7 @@ function getButtonName() {
 }
 
 class App extends React.Component {
+
     buttonText = "Refresh Time"
     style = {backgroundColor: 'blueviolet', color: 'white',}
     state = {
@@ -22,6 +24,14 @@ class App extends React.Component {
         bcImg: 'https://mobilecontent.costco.com/live/resource/img/ca-homepage/d-appliances-hero-200217-en.jpg',
         weather: {}
     };
+    constructor() {
+        super();
+        let res = getVidoes('macbook pro 2020')
+        if(res) {
+
+
+        }
+    }
     recvNewTerm(term) {
         console.log('parent function context ---->>>', term)
         this.setState({term})
@@ -37,6 +47,7 @@ class App extends React.Component {
     }
 
     render() {
+
         return (
             // <div>
             //     <label htmlFor="name" className="label">Enter name:</label>

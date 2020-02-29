@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom'
 import './weatherComponent.css'
 import axios from "axios";
 import Loader from "./loader";
-const apiKey = '80a967d4075ab661b8e59826fffcd1f6'
+
+const apiKey = '80a967d4075ab661b8e59826fffcd1f6'// Please use your own key instead of mine :)
+const weatherAPIKey = '80a967d4075ab661b8e59826fffcd1f6'
+const weatherUrl = 'http://api.weatherstack.com/current?'
 
 class WeatherComponent extends Component {
     count = 0;
@@ -16,6 +19,7 @@ class WeatherComponent extends Component {
         images: [],
         newWeather: {}
     }
+
     //state = {loading: true}
     constructor(pros) {
         super(pros);
@@ -28,14 +32,14 @@ class WeatherComponent extends Component {
     }
 
     updateCityQuery() {
-       axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${this.state.newCity}`)
-           .then(res => this.setState({newWeather: res.data}))
+        axios.get(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${this.props.newCity}`)
+            .then(res => this.setState({newWeather: res.data}))
 
         // setTimeout(
         console.log('run1')
-        axios.get('https://api.unsplash.com/photos', {
+        axios.get('https://api.unsplash.com/search/photos', {
             params: {
-                query: this.state.newCity
+                query: this.props.newCity
             },
             headers: {
                 //Authorization: 'Client-ID _haOS3MAwueDb9FKgAiO9-9GABaZpIIG_RbJK7Q9SkI',
@@ -46,7 +50,8 @@ class WeatherComponent extends Component {
             .then(res => {
                 console.log('run2333')
                 console.log(res.data)
-                this.setState({loading: false, images: res.data})
+                // console.log(res.data.results)
+                this.setState({loading: false, images: res.data.results})
                 this.props.recvImages(this.state.images)
             })
             .catch(err => {
@@ -67,11 +72,40 @@ class WeatherComponent extends Component {
         //     & query = New York
 
         this.updateCityQuery()
+        // this.getWeatherData(this.props.newCity)
+    }
+
+    getWeatherData(city) {
+        let data = undefined
+        if (!city) {
+            console.log(`invalid city ${city}`)
+            return
+        }
+
+        let queryUrl = `${weatherUrl}access_key=${weatherAPIKey}&query=${city}`
+        this.setState({loading: true})
+        setTimeout(() => {
+            axios.get(queryUrl)
+                .then(response => {
+                    // handle success
+                    this.setState({weather: response.data})
+                    console.log(response);
+                })
+                .catch(error => {
+                    // handle error
+                    this.setState({error})
+                    console.log(error);
+                })
+                .finally(e => {
+                    this.setState({loading: false})
+                })
+
+        }, 1000)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('hiii', prevProps)
-        if(prevProps.newCity !== this.props.newCity) {
+        if (prevProps.newCity !== this.props.newCity) {
             this.setState({newCity: this.props.newCity})
             this.updateCityQuery()
         }
@@ -93,7 +127,7 @@ class WeatherComponent extends Component {
         }
         return <div className="weather"
                     style={{backgroundImage: `url(${this.props.bcImage})`}}>
-            <div >
+            <div>
 
                 <div className="weatherRow">
                     <div className="weatherColumn">{this.state.newWeather?.current?.weather_descriptions[0]}</div>
