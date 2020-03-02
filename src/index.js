@@ -1,27 +1,38 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-import faker from 'faker';
+//import faker from 'faker';
 /*import CommentDetail from "./commentDetail";
 import CommentDetail2, {iPhone} from "./commentDetail2";
 import AppCard from "./appCard";
 import SearchBar, {APP_NAME} from "./components/searchBar";
 import WeatherComponent from "./components/weatherComponent";
 import ImageList from "./components/imageList";*/
-import getVideo from "./components/youtube";
+//import getVideo from "./components/youtube";
+import YoutubeSearch from "./components/youtubeSearch";
 
 
 class App extends React.Component{
 
+    state = {
+        term: 'end game'
+    }
     constructor() {
         super();
-        let search = 'infinity'
-        let str = null
-        getVideo(search)
+        //let search = 'infinity war'
+        //let str = null
+        //getVideo(search)
         // console.log(str)
+    }
+
+    recvNewTerm(term) {
+        console.log('parent function context ---->>>', term)
+        this.setState({term})
     }
     render() {
         return (
-            <div></div>
+            <div>
+                <YoutubeSearch recvTerm={term => this.recvNewTerm(term)}>hello</YoutubeSearch>
+            </div>
         );
     }
 

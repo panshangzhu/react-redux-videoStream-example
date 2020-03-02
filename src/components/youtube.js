@@ -19,7 +19,7 @@ let getVideo = async (search) => {
                 timeout: 2000
             }
         })
-        //console.log(res)
+        console.log(res)
 
         return res
     }
