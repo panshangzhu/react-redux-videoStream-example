@@ -55,16 +55,19 @@ class App extends React.Component {
     constructor() {
         super();
     }
+
     componentDidMount() {
         this.getVideo(this.state.term)
         // youtube(this.state.term)
         // console.log(youtube(this.state.term))
     }
 
-    recvNewTerm(term) {
-        console.log('parent function context ---->>>', term)
-        this.setState({term})
+    async recvNewTerm(term) {
+        console.log('parent function context ---->>>', this.state.term)
+        await this.setState({term})
+        // setTimeout(() => {
         this.getVideo(this.state.term)
+        // }, 200)
     }
 
     recvImagesFromChild(images) {

@@ -14,6 +14,7 @@ class YoutubeList extends React.Component{
                 {this.props.videos.map((value, index) => {
                     return (
                         <div className="youtubeList" key={index}>
+                            <p>{value?.snippet?.title}</p>
                             <img className="img"
                                  src={value?.snippet?.thumbnails?.medium?.url}
                                  onClick={event => this.selectVideo(index)}></img>

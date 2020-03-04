@@ -2,11 +2,13 @@
 .youtubeList {
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .img {
-    width: 260px;
+    /*width: 200px;*/
     margin: 5px;
-    border: gold solid 1px;
+    border: #ccc solid 1px;
     cursor: pointer;
+    border-radius: 10px;
 }
