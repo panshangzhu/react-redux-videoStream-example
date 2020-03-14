@@ -1,22 +1,31 @@
 import selectSong from "../actions";
 import { combineReducers } from 'redux'
 import {FETCH_SONG, SONG_SELECTED} from "../helper";
+import userReducer from './userReducer'
 
-const songsReducer = () => {
-    return [
-        {title: 'Ride it', duration: '2:37'},
-        {title: 'Higher love', duration: '3:48'},
-        {title: 'Stay with me', duration: '4:22'},
-        {title: 'Heaven', duration: '3:37'},
-    ]
+const initState = {
+    fetchedSongs: [],
+    putSingleSong: null
 }
 
-const selectedSongReducer = (selectSong = null, action) => {
+const songsReducer = (state = initState, action) => {
+    switch (action.type) {
+        case FETCH_SONG:
+            // return [...state, ...action.payload.data]
+            return {...state, fetchedSongs: action.payload.data}
+            // return  action.payload.data
+
+        default:
+            return state
+    }
+}
+
+const selectedSongReducer = (state = null, action) => {
     if(action.type === SONG_SELECTED) {
         return action.payload
     }
 
-    return selectSong
+    return state
 }
 
 const fetchSongReducer = (songs = null, action) => {
@@ -31,7 +40,8 @@ export default combineReducers(
     {
         songsReducer: songsReducer,
         selectedSongReducer,
-        fetchSongReducer
+        fetchSongReducer,
+        userReducer
     }
 )
 

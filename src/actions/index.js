@@ -1,4 +1,4 @@
-import {SONG_SELECTED, FETCH_SONG} from "../helper";
+import {SONG_SELECTED, FETCH_SONG, FETCH_USER, FETCH_All_USER} from "../helper";
 import axios from 'axios'
 import jsonPlaceHolder from "../api/jsonPlaceHolder";
 
@@ -26,20 +26,30 @@ export const actFetchSong =  async () => {
 */
 
 // thunk format
-export const actFetchSong =   () => {
-    // return a function
-    return async dispatch => {
-        let songs =  await jsonPlaceHolder.get('albums')
-        console.log('fetching songs from server')
-        dispatch( {
-            // eslint-disable-next-line no-undef
-            type: FETCH_SONG, // required, action id/type
-            payload: songs
-        })
-    }
+export const actFetchSong = () => async dispatch => {
+    let songs = await jsonPlaceHolder.get('albums')
+    console.log('fetching songs from server')
+    dispatch({
+        // eslint-disable-next-line no-undef
+        type: FETCH_SONG, // required, action id/type
+        payload: songs
+    })
 }
 
-const actUpdateSong = (song) => {
+
+// return object
+export const actFetchUser = uid => async dispatch => dispatch({
+    type: FETCH_USER,
+    payload: await jsonPlaceHolder.get(`users/${uid}`)
+})
+
+export const actFetchAllUser = uid => async dispatch => dispatch({
+    type: FETCH_All_USER,
+    payload: await jsonPlaceHolder.get(`users`)
+})
+
+
+const actUpdateSong = song => {
     return {
         type: 'UPDATE_SONG',
         payload: song.title = `${song.title} v2`
