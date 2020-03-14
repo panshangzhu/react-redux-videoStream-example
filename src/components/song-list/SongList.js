@@ -1,8 +1,12 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {connect} from 'react-redux'
-import actSelectSong from '../../actions'
+import actSelectSong, {actFetchSong} from '../../actions'
 
-class SongList extends Component{
+class SongList extends Component {
+    componentDidMount() {
+        this.props.actFetchSong()
+    }
+
     renderSongList() {
         return this.props.songs.map(song => {
             return (<div key={song.title}>
@@ -17,7 +21,10 @@ class SongList extends Component{
         return (
             <div>
                 {this.renderSongList()}
+                <div>songs</div>
+                <div>{JSON.stringify(this.props.fetchSongs)}</div>
             </div>
+
         )
     }
 }
@@ -28,7 +35,9 @@ class SongList extends Component{
 
 const mapStateToProps = (state) => {
     console.log('state from songlist--->')
-    return {songs: state.songsReducer}
+    return {songs: state.songsReducer,
+        fetchSongs: state.fetchSongReducer
+    }
 }
 // ES2015, closure,
-export default connect(mapStateToProps, {actSelectSong})(SongList)
+export default connect(mapStateToProps, {actSelectSong, actFetchSong})(SongList)
