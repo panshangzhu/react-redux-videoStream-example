@@ -1,6 +1,4 @@
 import React from "react";
-import SongList from "../components/song-list/SongList";
-import SongDetail from "../components/song-list/SongDetail";
 import {BrowserRouter, HashRouter, Link, Route} from "react-router-dom";
 
 const PageOne = () => {
@@ -28,12 +26,6 @@ const App = () => {
                     <Route path="/pagetwo" component={PageTwo}></Route>
                 </div>
             </BrowserRouter>
-            <div>
-                <SongList></SongList>
-            </div>
-            <div>
-                <SongDetail></SongDetail>
-            </div>
         </div>
     )
 }
