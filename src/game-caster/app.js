@@ -1,5 +1,6 @@
 import React from "react";
 import {BrowserRouter, HashRouter, Link, Route} from "react-router-dom";
+import GoogleAuth from "../GoogleAuth";
 
 const PageOne = () => {
     return <div>
@@ -20,6 +21,7 @@ const PageTwo = () => {
 const App = () => {
     return (
         <div>
+            <GoogleAuth></GoogleAuth>
             <BrowserRouter>
                 <div>
                     <Route path="/" exact component={PageOne}></Route>
