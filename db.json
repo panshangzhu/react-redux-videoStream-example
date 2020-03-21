@@ -1,0 +1,14 @@
+{
+  "streams": [
+    {"id":  1,
+      "title": "Full stack developer online training",
+      "description": "Five star-Full stack developer online training"
+    }
+  ],
+  "users": [
+    {
+      "id": "1111",
+      "username": "Mark"
+    }
+  ]
+}

@@ -2,6 +2,8 @@ import selectSong from "../actions";
 import { combineReducers } from 'redux'
 import {FETCH_SONG, SONG_SELECTED} from "../helper";
 import userReducer from './userReducer'
+import oauthReducer from "./oauthReducer";
+import {reducer as formReducer} from "redux-form";
 
 const initState = {
     fetchedSongs: [],
@@ -41,7 +43,9 @@ export default combineReducers(
         songsReducer: songsReducer,
         selectedSongReducer,
         fetchSongReducer,
-        userReducer
+        userReducer,
+        oauthReducer,
+        form: formReducer
     }
 )
 
