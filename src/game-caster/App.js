@@ -1,7 +1,7 @@
 import React from "react";
-import SongList from "../components/song-list/SongList";
-import SongDetail from "../components/song-list/SongDetail";
 import {BrowserRouter,Link,Route, Switch} from 'react-router-dom';
+import GoogleAuth from '../GoogleAuth';
+import StreamCreate from "../components/stream/StreamCreate";
 
 const PageOne = () => {
   return <div>Page One
@@ -18,6 +18,8 @@ const PageTwo = () => {
 const App = () => {
   return (
     <div>
+        <StreamCreate />
+        <GoogleAuth />
         <BrowserRouter>
              <div>
                  <Switch>
@@ -26,12 +28,6 @@ const App = () => {
                  </Switch>
              </div>
         </BrowserRouter>
-      <div>
-        <SongList></SongList>
-      </div>
-      <div>
-        <SongDetail></SongDetail>
-      </div>
     </div>
   );
 };

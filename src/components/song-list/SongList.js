@@ -33,7 +33,7 @@ class SongList extends Component {
 }
 
 // 所有的reducers, 所有的actions
-// 都被映射称为了component pros
+// 都被映射称为了component props
 // mapStateToProps会被调用一次，当你的reducer里面有新数据的时候
 
 const mapStateToProps = (state) => {
