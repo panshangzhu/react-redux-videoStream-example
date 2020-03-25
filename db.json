@@ -1,10 +1,20 @@
 {
   "streams": [
     {
-      "id":  1,
+      "id": 1,
       "title": "Full stack developer online training",
       "description": "Five star-Full stack developer online training",
       "userId": "1111"
+    },
+    {
+      "title": "react-redux-coop",
+      "description": "high quality training service",
+      "id": 2
+    },
+    {
+      "title": "angular9",
+      "description": "angular9 full stack developer",
+      "id": 3
     }
   ],
   "users": [

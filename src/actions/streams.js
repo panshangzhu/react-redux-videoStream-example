@@ -13,12 +13,24 @@ import streams from '../api/streams'
 const restObj = '/streams'
 
 export const streamCreate = formValues => async dispatch => {
-    let response = await streams.post(restObj, formValues)
+    // id, title, descript,
+
+    //loading
+    let response = undefined
+    try {
+       response  = await streams.post(restObj, formValues)
+    } catch (e) {
+        //
+        //unloading,
+       return;
+    }
+
+    //unloading.
     dispatch({type: STREAMS_CREATE, payload: response.data})
 }
 
 export const streamEdit= (id, formValue) => async dispatch => {
-    let response = await streams.put(`${restObj}/${id}`, {formValue})
+    let response = await streams.put(`${restObj}/${id}`, formValue)
     dispatch({type: STREAMS_EDIT, payload: response.data})
 }
 

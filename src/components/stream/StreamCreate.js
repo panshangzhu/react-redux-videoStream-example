@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Field, reduxForm, SubmissionError} from "redux-form";
+import {streamCreate} from "../../actions/streams";
 
 const deplayPost = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -15,7 +16,10 @@ class StreamCreate extends Component{
         </div>)
 
     FORM_FAIELD = 'Login faield'
+
     submitForm = (formValues) => {
+        this.props.streamCreate(formValues)
+        /*
         return deplayPost(2000).then(() => {
             if(!['jerry', 'curry', 'pan', 'jessie'].includes(formValues.username))
             {
@@ -32,6 +36,7 @@ class StreamCreate extends Component{
                 console.log(`Login successfully, ${formValues}`)
             }
         })
+         */
     }
 
     render() {
@@ -68,7 +73,6 @@ class StreamCreate extends Component{
 const validate = values => {
    const errors = {}
    if(!values.username) {
-       debugger
        errors.username = 'Required'
    } else if(values.username.length > 15) {
        errors.username = 'Must be 15 characters of less'
@@ -81,5 +85,5 @@ const formWrapped = reduxForm({
     validate
 })(StreamCreate)
 
-export default connect(null, {})(formWrapped)
+export default connect(null, {streamCreate})(formWrapped)
 
