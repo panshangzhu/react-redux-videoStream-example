@@ -1,0 +1,12 @@
+.songDetailDiv1{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    color: gold;
+}
+
+.songDetailDiv2{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}

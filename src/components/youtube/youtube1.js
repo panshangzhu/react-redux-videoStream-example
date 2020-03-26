@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import "./../index.css"
+import "../../index.css"
 
 class Youtube1 extends React.Component{
 

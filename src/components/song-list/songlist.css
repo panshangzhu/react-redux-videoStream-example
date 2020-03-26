@@ -1,0 +1,23 @@
+.containers {
+    display: flex;
+    flex-direction: row;
+    /*justify-content: center;*/
+}
+.btnShow{
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.titleShow{
+    width: 85%;
+}
+
+.singerName{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+
+}
