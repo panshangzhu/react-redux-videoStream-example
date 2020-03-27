@@ -3,7 +3,7 @@ import {STREAMS_CREATE, STREAMS_DELETE, STREAMS_EDIT, STREAMS_FETCH_ALL} from ".
 const streamReducer = (state = [], action) =>{
     switch (action.type) {
         case STREAMS_FETCH_ALL:
-            return [...action.payload]
+            return [...state, ...action.payload]
         case STREAMS_CREATE:
             return [...state, action.payload]
         case STREAMS_EDIT:

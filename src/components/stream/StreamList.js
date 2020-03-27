@@ -49,7 +49,7 @@ class StreamList extends Component {
         return <div>
             {
                 this.props.streams.map(st =>
-                    <StreamItem stream={st}></StreamItem>)
+                    <StreamItem key={st.title} stream={st}></StreamItem>)
             }
         </div>
     }
@@ -63,7 +63,7 @@ class StreamList extends Component {
                 </ul>
                 <Link type="button"
                       to="/streams/new"
-                      class="btn btn-outline-primary" style={{display: this.props.isSignedIn ? 'block': 'none'}}>Create</Link>
+                      className="btn btn-outline-primary" style={{display: this.props.isSignedIn ? 'block': 'none'}}>Create</Link>
 
             </div>
         )
@@ -88,7 +88,7 @@ const validate = values => {
     return errors
 }
 const formWrapped = reduxForm({
-    // form: 'streamCreater',
+    form: 'streamCreater',
     // validate
 })(StreamList)
 
