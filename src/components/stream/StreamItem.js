@@ -1,23 +1,36 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Field, reduxForm, SubmissionError} from "redux-form";
+import StreamEdit from "./StreamEdit";
+import EditTitle from "./EditTitle";
 
 
-class SteamItem extends Component {
+class StreamItem extends Component {
+    state = {showSmallButton: false}
+    funMouseEnter = event => {
+        this.setState({showSmallButton: true})
+    }
+
+    funMouseLeave = event => {
+        this.setState({showSmallButton: false})
+    }
+
     render() {
         return (
-            <li className="media">
+            <li className="media stream-item border-bottom" onMouseEnter={this.funMouseEnter}
+                onMouseLeave={this.funMouseLeave}>
                 <img src="..." className="mr-3" alt="..."/>
                 <div className="media-body">
-                    <h5 className="mt-0 mb-1">List-based media object</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                    Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc
-                    ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    <EditTitle title={this.props.stream?.title}></EditTitle>
+                    {this.props.stream?.description}
                 </div>
-                // MDV,MVVM,
+                <div className="" style={{visibility: this.state.showSmallButton ? 'visible': 'hidden'}}>
+                    <i className="icon-button-group far fa-edit"></i>
+                    <i className="icon-button-group far fa-trash-alt"></i>
+                </div>
             </li>
         )
     }
 }
 
-export default SteamItem
+export default StreamItem

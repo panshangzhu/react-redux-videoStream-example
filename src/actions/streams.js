@@ -1,5 +1,6 @@
 import {STREAMS_CREATE, STREAMS_DELETE, STREAMS_EDIT, STREAMS_FETCH, STREAMS_FETCH_ALL} from "../helper";
 import streams from '../api/streams'
+import routerHistroy from "../routerHistroy";
 // redux-thunk dispatch
 // redux-thunk type action creator//
 // export const streamCreate = (formValues) => {
@@ -27,6 +28,7 @@ export const streamCreate = formValues => async dispatch => {
 
     //unloading.
     dispatch({type: STREAMS_CREATE, payload: response.data})
+    routerHistroy.push('/')
 }
 
 export const streamEdit= (id, formValue) => async dispatch => {

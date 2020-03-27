@@ -2,15 +2,18 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Field, reduxForm, SubmissionError} from "redux-form";
 import {streamFetchAll} from "../../actions/streams";
+import StreamItem from "./StreamItem";
+import {Link} from "react-router-dom";
 
 const deplayPost = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-class StreamCreate extends Component {
+class StreamList extends Component {
     constructor() {
         super();
     }
 
     componentDidMount() {
+        console.log('streaList did mount....')
         this.props.streamFetchAll()
     }
 
@@ -44,21 +47,30 @@ class StreamCreate extends Component {
 
     renderStreamList() {
         return <div>
-            <ul>
-                // MDV,MVVM,
-                {this.props.streams.map(st => {
-                    return <li key={st.id}>{st.id + ', ' +  st.title}</li>
-                })}
-            </ul>
+            {
+                this.props.streams.map(st =>
+                    <StreamItem stream={st}></StreamItem>)
+            }
         </div>
     }
 
     render() {
         const {error, handleSubmit, pristine, reset, submitting} = this.props
-        return (<div>
-            <div>Stream List</div>
-            {this.renderStreamList()}
-        </div>)
+        return (
+            <div>
+                <ul className="list-unstyled">
+                    {this.renderStreamList()}
+                </ul>
+                <Link type="button"
+                      to="/streams/new"
+                      class="btn btn-outline-primary" style={{display: this.props.isSignedIn ? 'block': 'none'}}>Create</Link>
+
+            </div>
+        )
+        // return (<div>
+        //     <div>Stream List</div>
+        //     {this.renderStreamList()}
+        // </div>)
     }
 
 }
@@ -78,11 +90,12 @@ const validate = values => {
 const formWrapped = reduxForm({
     // form: 'streamCreater',
     // validate
-})(StreamCreate)
+})(StreamList)
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        streams: state.streamReducer
+        streams: state.streamReducer,
+        isSignedIn: state.oauthReducer.isSignedIn
     }
 }
 

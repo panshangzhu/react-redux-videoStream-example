@@ -1,0 +1,25 @@
+
+.stream-item {
+    transition: all .2s ease-in-out;
+}
+
+.stream-item:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.01);
+}
+
+.icon-button-group {
+    opacity: 0.5;
+    transition: all .2s ease-in-out;
+}
+
+.icon-button-group:nth-child(odd) {
+    margin: 5px;
+}
+
+.icon-button-group:hover {
+    opacity: 0.9;
+    transform: scale(1.3);
+}
+
+
