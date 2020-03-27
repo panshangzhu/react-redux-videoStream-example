@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
-import {streamCreate} from "../../actions/streams";
 
 const deplayPost = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-class StreamCreate extends Component {
+class StreamEdit extends Component {
   renderInput = ({ input, label, type, meta: { touched, error } }) => {
     return (
       <div>
@@ -19,26 +18,24 @@ class StreamCreate extends Component {
   };
 
   FORM_FAILED = "login Failed";
-
   submitForm = formValues => {
-    // return deplayPost(2000).then(
-    //   () => {
-    //     if (!["jerry", "curry", "pan"].includes(formValues.username)) {
-    //       throw new SubmissionError({
-    //         username: "User does not exist in system",
-    //         _error: this.FORM_FAILED
-    //       });
-    //     } else if (formValues.password !== "mark2win") {
-    //       throw new SubmissionError({
-    //         password: "wrong password",
-    //         _error: this.FORM_FAILED
-    //       });
-    //     } else {
-    //       console.log(`Login Successfully, ${formValues}`);
-    //     }
-    //   } //dely 2s
-    // );
-    this.props.streamCreate(formValues);
+    return deplayPost(2000).then(
+      () => {
+        if (!["jerry", "curry", "pan"].includes(formValues.username)) {
+          throw new SubmissionError({
+            username: "User does not exist in system",
+            _error: this.FORM_FAILED
+          });
+        } else if (formValues.password !== "mark2win") {
+          throw new SubmissionError({
+            password: "wrong password",
+            _error: this.FORM_FAILED
+          });
+        } else {
+          console.log(`Login Successfully, ${formValues}`);
+        }
+      } //dely 2s
+    );
   };
 
   render() {
@@ -46,19 +43,19 @@ class StreamCreate extends Component {
     const { error, handleSubmit, pristine, reset, submitting } = this.props;
     return (
       <div>
-        <div>Stream Create</div>
+        <div>Stream Edit</div>
         <form onSubmit={handleSubmit(this.submitForm)}>
           {error && <strong>{error}</strong>}
           <Field
-            name="title"
+            name="username"
             type="text"
-            label="Stream Title"
+            label="Username"
             component={this.renderInput}
           ></Field>
           <Field
-            name="description"
-            type="text"
-            label="Stream description"
+            name="password"
+            type="password"
+            label="Password"
             component={this.renderInput}
           ></Field>
           <div>
@@ -86,6 +83,6 @@ const formWrapped = reduxForm({
   //reduxForm connect store and component
   form: "streamCreater", // form key cannot change
   validate
-})(StreamCreate);
+})(StreamEdit);
 
-export default connect(null, { streamCreate })(formWrapped);
+export default connect(null, {})(formWrapped);

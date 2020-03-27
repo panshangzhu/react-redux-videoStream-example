@@ -1,0 +1,41 @@
+{
+  "streams": [
+    {
+      "id": 1,
+      "title": "Full Stack developer online training",
+      "description": "Five star",
+      "userId": "1111"
+    },
+    {
+      "title": "react-demo",
+      "description": "high quality ",
+      "id": 2
+    },
+    {
+      "title": "test1",
+      "description": "test01",
+      "id": 3
+    },
+    {
+      "title": "angular9",
+      "description": "angular 9 full stack",
+      "id": 4
+    },
+    {
+      "title": "test1",
+      "description": "test",
+      "id": 5
+    },
+    {
+      "title": "test1",
+      "description": "test",
+      "id": 6
+    }
+  ],
+  "users": [
+    {
+      "id": "1111",
+      "username": "Mark"
+    }
+  ]
+}

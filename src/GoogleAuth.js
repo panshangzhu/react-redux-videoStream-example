@@ -28,6 +28,7 @@ class GoogleAuth extends Component {
     this.auth.signIn();
   };
   onSignOut = () => {
+    console.log('sign out');
     this.auth.signOut();
   };
 

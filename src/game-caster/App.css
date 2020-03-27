@@ -1,0 +1,6 @@
+.stream-item{
+    transition:all 2s ease-in-out;
+}
+.stream-item:hover{
+    background-color: aqua;
+}
