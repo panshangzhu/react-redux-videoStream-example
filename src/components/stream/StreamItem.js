@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Field, reduxForm, SubmissionError} from "redux-form";
 import StreamEdit from "./StreamEdit";
 import EditTitle from "./EditTitle";
+import {Link} from "react-router-dom";
 
 
 class StreamItem extends Component {
@@ -24,8 +25,10 @@ class StreamItem extends Component {
                     <EditTitle title={this.props.stream?.title}></EditTitle>
                     {this.props.stream?.description}
                 </div>
-                <div className="" style={{visibility: this.state.showSmallButton ? 'visible': 'hidden'}}>
-                    <i className="icon-button-group far fa-edit"></i>
+                <div className="" style={{visibility: this.state.showSmallButton ? 'visible' : 'hidden'}}>
+                    <Link to={`/streams/edit/${this.props.stream.id}`}>
+                        <i className="icon-button-group far fa-edit"></i>
+                    </Link>
                     <i className="icon-button-group far fa-trash-alt"></i>
                 </div>
             </li>

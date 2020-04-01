@@ -94,7 +94,7 @@ const formWrapped = reduxForm({
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        streams: state.streamReducer,
+        streams: state.streamReducer.streams,
         isSignedIn: state.oauthReducer.isSignedIn
     }
 }

@@ -31,8 +31,8 @@ export const streamCreate = formValues => async dispatch => {
     routerHistroy.push('/')
 }
 
-export const streamEdit= (id, formValue) => async dispatch => {
-    let response = await streams.put(`${restObj}/${id}`, formValue)
+export const streamEdit = (id, formValue) => async dispatch => {
+    let response = await streams.patch(`${restObj}/${id}`, formValue)
     dispatch({type: STREAMS_EDIT, payload: response.data})
 }
 

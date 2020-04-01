@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, HashRouter, Router, Link, Route} from "react-router-dom";
+import {BrowserRouter, HashRouter, Router, Link, Route, Switch} from "react-router-dom";
 import GoogleAuth from "../GoogleAuth";
 import StreamCreate from "../components/stream/StreamCreate";
 import StreamList from "../components/stream/StreamList";
@@ -7,6 +7,7 @@ import StreamEdit from "../components/stream/StreamEdit";
 import StreamDelete from "../components/stream/StreamDelete";
 import './App.css'
 import routerHistroy from "../routerHistroy";
+import StreamShow from "../components/stream/StreamShow";
 
 const PageOne = () => {
     return <div>
@@ -61,9 +62,9 @@ const NavBar = () => {
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    <GoogleAuth></GoogleAuth>
+                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
+                <GoogleAuth></GoogleAuth>
             </div>
         </nav>
     )
@@ -75,10 +76,13 @@ const App = () => {
             <NavBar/>
             <Router history={routerHistroy}>
                 <div>
-                    <Route path="/" exact component={StreamList}></Route>
-                    <Route path="/streams/new" component={StreamCreate}></Route>
-                    <Route path="/streams/edit" component={StreamEdit}></Route>
-                    <Route path="/streams/delete" component={StreamDelete}></Route>
+                    <Switch>
+                        <Route path="/" exact component={StreamList}></Route>
+                        <Route path="/streams/new" component={StreamCreate}></Route>
+                        <Route path="/streams/:id" component={StreamShow}></Route>
+                        <Route path="/streams/edit/:id" component={StreamEdit}></Route>
+                        <Route path="/streams/delete/:id" component={StreamDelete}></Route>
+                    </Switch>
                 </div>
             </Router>
         </div>

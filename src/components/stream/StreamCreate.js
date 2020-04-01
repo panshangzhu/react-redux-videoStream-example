@@ -5,14 +5,14 @@ import {streamCreate} from "../../actions/streams";
 
 const deplayPost = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-class StreamCreate extends Component{
+class StreamCreate extends Component {
     renderInput = ({input, label, type, meta: {touched, error}}) =>
-         (<div>
-             <label>{label}</label>
-             <div>
-                 <input type={type} {...input} placeholder={label} />
-                 {touched && error && <span>{error}</span>}
-             </div>
+        (<div>
+            <label>{label}</label>
+            <div>
+                <input type={type} {...input} placeholder={label}/>
+                {touched && error && <span>{error}</span>}
+            </div>
         </div>)
 
     FORM_FAIELD = 'Login faield'
@@ -61,7 +61,7 @@ class StreamCreate extends Component{
                 </Field>
                 <div>
                     <button type='submit' disabled={submitting}>Log in</button>
-                    <button  disabled={pristine || submitting}>Clear Value</button>
+                    <button disabled={pristine || submitting}>Clear Value</button>
                 </div>
             </form>
         </div>)
@@ -71,19 +71,27 @@ class StreamCreate extends Component{
 
 
 const validate = values => {
-   const errors = {}
-   if(!values.username) {
-       errors.username = 'Required'
-   } else if(values.username.length > 15) {
-       errors.username = 'Must be 15 characters of less'
-   }
+    const errors = {}
+    if (!values.username) {
+        errors.username = 'Required'
+    } else if (values.username.length > 15) {
+        errors.username = 'Must be 15 characters of less'
+    }
 
-   return errors
+    return errors
 }
 const formWrapped = reduxForm({
     form: 'streamCreater',
     validate
 })(StreamCreate)
 
-export default connect(null, {streamCreate})(formWrapped)
+
+export default connect(state => {
+    return {
+        initialValues: {
+            title: 'test init',
+            description: 't2'
+        }
+    }
+}, {streamCreate})(formWrapped)
 
