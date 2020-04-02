@@ -56,34 +56,45 @@ class SteamList extends React.Component{
         // console.log(this.props)
         const {error, handleSubmit, pristine, reset, submitting} = this.props
         return (
-            <div>
-                <div>
-                    <div>Stream List</div>
-                    {this.renderStreamList()}
-                    {/*<link to='/'>To home</link>*/}
-                </div>
-                {/*<form onSubmit={handleSubmit(this.submitForm)}>*/}
-                {/*    {error && <strong>{error}</strong>}*/}
-                {/*    <Field name='username'*/}
-                {/*           type="text"*/}
-                {/*           label="Username"*/}
-                {/*           component={this.renderInput}*/}
-                {/*    ></Field>*/}
-                {/*    <Field name='password'*/}
-                {/*           type='password'*/}
-                {/*           label='Password'*/}
-                {/*           component={this.renderInput}*/}
-                {/*    >*/}
-
-                {/*    </Field>*/}
-                {/*    <div>*/}
-                {/*        <button type='submit' disabled={submitting}>Log in</button>*/}
-                {/*        <button disabled={submitting || pristine}>Clear value</button>*/}
-                {/*    </div>*/}
-                {/*    /!*<Field name="title" component={this.renderInput}/>*!/*/}
-                {/*</form>*/}
+            <div className="media">
+                <img src="..." className="mr-3" alt="..."></img>
+                    <div className="media-body">
+                        <h5 className="mt-0">Media heading</h5>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
+                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                        vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
             </div>
-        );
+        )
+        // return (
+        //     <div>
+        //         <div>
+        //             <div>Stream List</div>
+        //             {this.renderStreamList()}
+        //             {/*<link to='/'>To home</link>*/}
+        //         </div>
+        //         {/*<form onSubmit={handleSubmit(this.submitForm)}>*/}
+        //         {/*    {error && <strong>{error}</strong>}*/}
+        //         {/*    <Field name='username'*/}
+        //         {/*           type="text"*/}
+        //         {/*           label="Username"*/}
+        //         {/*           component={this.renderInput}*/}
+        //         {/*    ></Field>*/}
+        //         {/*    <Field name='password'*/}
+        //         {/*           type='password'*/}
+        //         {/*           label='Password'*/}
+        //         {/*           component={this.renderInput}*/}
+        //         {/*    >*/}
+        //
+        //         {/*    </Field>*/}
+        //         {/*    <div>*/}
+        //         {/*        <button type='submit' disabled={submitting}>Log in</button>*/}
+        //         {/*        <button disabled={submitting || pristine}>Clear value</button>*/}
+        //         {/*    </div>*/}
+        //         {/*    /!*<Field name="title" component={this.renderInput}/>*!/*/}
+        //         {/*</form>*/}
+        //     </div>
+        // );
     }
 }
 
