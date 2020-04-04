@@ -6,22 +6,26 @@ import flv from 'flv.js'
 
 const deplayPost = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-class StreamShow extends Component{
+class StreamShow extends Component {
 
 
     constructor(props) {
         super(props);
         this.videoRes = React.createRef()
+        this.divName = React.createRef()
     }
+
     //FORM_FAIELD = 'Login faield'
 
     componentDidMount() {
         this.props.streamFetch(this.props.match.params.id)
         this.buildPlayer()
+
+        console.log(this.divName.current.className)
     }
 
     buildPlayer() {
-        if(this.flvPlayer || !this.props.stream) {
+        if (this.flvPlayer || !this.props.stream) {
             return
         }
         const {id} = this.props.match.params
@@ -36,18 +40,28 @@ class StreamShow extends Component{
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-      this.buildPlayer()
+        this.buildPlayer()
     }
 
+    componentWillUnmount() {
+        if (this.flvPlayer) {
+            this.flvPlayer.destroy()
+            this.flvPlayer = undefined
+        }
+    }
+
+
     render() {
-        if(!this.props.stream) {
+        if (!this.props.stream) {
             return <div>
-                <div className="spinner-border text-primary" role="status">
+                <div
+                    ref={this.divName}
+                    className="spinner-border text-primary" role="status">
                     <span className="sr-only">Loading...</span>
                 </div>
             </div>
         }
-        
+
         return <div>
             <video controls
                    ref={this.videoRes}
@@ -59,7 +73,7 @@ class StreamShow extends Component{
 }
 
 
-const mapStateToProps = (state, ownProps)=> {
+const mapStateToProps = (state, ownProps) => {
 
     return {
         sid: ownProps.match.params.id,
