@@ -48,7 +48,7 @@ export const streamFetchAll = () => async dispatch => {
 
 export const streamDelete = id => async dispatch => {
     let response = await streams.delete(`${restObj}/${id}`)
-    dispatch({type: STREAMS_DELETE, payload: response.data})
+    dispatch({type: STREAMS_DELETE, payload: id})
 }
 
 

@@ -4,7 +4,7 @@ import {Field, reduxForm, SubmissionError} from "redux-form";
 
 const deplayPost = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-class StreamCreate extends Component{
+class StreamDelete extends Component{
     renderInput = ({input, label, type, meta: {touched, error}}) =>
          (<div>
              <label>{label}</label>
@@ -77,7 +77,7 @@ const validate = values => {
 const formWrapped = reduxForm({
     form: 'streamCreater',
     validate
-})(StreamCreate)
+})(StreamDelete)
 
 export default connect(null, {})(formWrapped)
 

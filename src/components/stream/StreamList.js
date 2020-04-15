@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Field, reduxForm, SubmissionError} from "redux-form";
 import {streamFetchAll} from "../../actions/streams";
 import StreamItem from "./StreamItem";
+import StreamCarousel from './StreamCarousel';
 import {Link} from "react-router-dom";
 
 const deplayPost = ms => new Promise(resolve => setTimeout(resolve, ms))
@@ -58,13 +59,17 @@ class StreamList extends Component {
         const {error, handleSubmit, pristine, reset, submitting} = this.props
         return (
             <div>
-                <ul className="list-unstyled">
+            <StreamCarousel />
+            <div className="container">
+                
+                {/* <ul className="list-unstyled"> */}
                     {this.renderStreamList()}
-                </ul>
+                {/* </ul> */}
                 <Link type="button"
                       to="/streams/new"
                       className="btn btn-outline-primary" style={{display: this.props.isSignedIn ? 'block': 'none'}}>Create</Link>
 
+            </div>
             </div>
         )
         // return (<div>
@@ -93,8 +98,9 @@ const formWrapped = reduxForm({
 })(StreamList)
 
 const mapStateToProps = (state, ownProps) => {
+    console.log(state.streamReducer);
     return {
-        streams: state.streamReducer,
+        streams: state.streamReducer.streams,
         isSignedIn: state.oauthReducer.isSignedIn
     }
 }
